@@ -29,7 +29,8 @@ module.exports = gql`
 
    extend type Query {
       getPost(id: ID!): Post!
-      getPosts(limit: Int, offset: Int): AllPost!
+      getPosts(limit: Int, offset: Int): [Post]!
+      numberOfPosts: Int!
    }
    
    extend type Mutation {

@@ -14,20 +14,17 @@ const postQuery = {
    },
 
    async getPosts(parent, args, { db, req }, info) {
-      console.log(args)
-      const totalPosts = await db('posts').count('')
-      const posts = await db('posts')
+      return db('posts')
          .select('*')
          .orderBy('created_at', 'desc')
          .limit(args.limit)
          .offset(args.offset)
-
-      console.log(posts)
-      return {
-         posts,
-         count: totalPosts[0].count
-      }
    },
+
+   async numberOfPosts(parent, args, { db }) {
+      const count = await db('posts').count()
+      return count[0].count
+   }
 }
 
 const postMutation = {

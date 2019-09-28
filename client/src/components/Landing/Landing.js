@@ -1,32 +1,18 @@
 import React, { useState, useEffect } from 'react'
-//import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
-// import Card from '../UI/Card/Card'
 import BlogPost from '../BlogPost/BlogPost'
 import query from '../../queries/postQuery'
-//const query = gql`
-//   query($limit: Int, $offset: Int) {
-//      getPosts(limit: $limit offset: $offset) {
-//         count
-//         posts {
-//            id
-//            content
-//            title,
-//            created_at
-//         }
-//      }
-//   }
-//`
+import numQuery from '../../queries/numPosts'
 
 const Landing = () => {
    const limit = 5;
    const [offset, setOffset] = useState(0)
+   const { data: numData, error: numError } = useQuery(numQuery)
    const [totalPosts, setTotalPosts] = useState(1)
-   const { data, refetch, loading } = useQuery(query, { fetchPolicy: 'cache-first', variables: { limit, offset } })
-
+   const { data, error, refetch, loading } = useQuery(query, { fetchPolicy: 'cache-first', variables: { limit, offset } })
    useEffect(() => {
-      data && setTotalPosts(data.getPosts.count)
-   }, [data])
+      numData && setTotalPosts(numData.numberOfPosts)
+   }, [numData])
 
    const paginate = (dir) => {
       if (dir === 'forwards') {
@@ -43,8 +29,10 @@ const Landing = () => {
    return (
       <div className="container column">
          <div className="landing">
+            {error && error.graphQLErrors.map(err => <p className="error" key={err.message}> {err.message} </p>)}
+            {numError && numError.graphQLErrors.map(err => <p className="error" key={err.message}> {err.message} </p>)}
             <div className="landing__post">
-               {data && data.getPosts.posts.map(post => <BlogPost key={post.id} post={post} />)}
+               {data && data.getPosts.map(post => <BlogPost key={post.id} post={post} />)}
             </div>
             <div className="landing__pagination">
                {offset > 0 ? <i className="fas fa-arrow-left" onClick={e => paginate('back')}></i> : <i></i>}
