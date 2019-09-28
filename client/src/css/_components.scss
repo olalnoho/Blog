@@ -1,0 +1,62 @@
+.form {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  label {
+    align-self: flex-start;
+    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
+  }
+  input {
+    font-weight: 700;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    font-size: 2rem;
+    padding: 0.3rem;
+    margin-bottom: 4rem;
+    background-color: transparent;
+    border-bottom: 2px solid $header-background;
+  }
+
+  input[type="submit"] {
+    cursor: pointer;
+    color: white;
+    align-self: flex-end;
+    width: 20%;
+    padding: 1rem;
+    background-color: $button-color;
+    transition: background-color 0.3s;
+  }
+  input[type="submit"]:hover {
+    background-color: darken($button-color, 10%);
+  }
+}
+
+.error {
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  color: red;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 800px) {
+  .form {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .form {
+    input[type="submit"] {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
+
+@import "./vars";
+@import "./typography";
+@import "./components";
+@import "../components/UI/Header/Header";
+@import "../components/UI/Sidebar/Sidebar";
+@import "../components/Landing/Landing";
+@import "../components/UI/Card/Card";
+@import "../components/Auth/Login/Login";
+@import "../components/Auth/Register/Register";
+@import "../components/Create/Create";
+@import "../components/BlogPost/BlogPost";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  // Set 1 rem to be 10px.
+  font-size: 62.5%;
+  font-family: Nunito, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 20rem 6fr;
+  grid-template-rows: min-content 1fr;
+}
+
+.container {
+  grid-column: 2/-2;
+  grid-row: 2/-1;
+  background-color: $main-background;
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.activelink {
+  color: darken(blanchedalmond, 20%) !important;
+}
+
+@media only screen and (max-width: 1000px) {
+  html {
+    font-size: 55%;
+  }
+  #root {
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content min-content 1fr;
+  }
+
+  .container {
+    grid-row: 3/-1;
+  }
+}
+@media only screen and (max-width: 500px) {
+  html {
+    font-size: 50%;
+  }
+}

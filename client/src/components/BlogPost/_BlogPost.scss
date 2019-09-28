@@ -1,0 +1,41 @@
+.blogpost {
+  box-shadow: inset .2rem .2rem .2rem grey, inset -.2rem -.2rem .2rem grey;
+  white-space: pre-wrap;
+  display: flex;
+  flex-direction: column;
+  min-height: 20rem;
+  padding: 2rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  justify-content: space-around;
+  margin: auto;
+  width: 60%;
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $header-background;
+    margin-bottom: 4rem;
+    h3 {
+      margin: 0;
+      font-size: 2rem;
+      color: $header-background;
+    }
+  }
+
+  //border: 20px solid black;
+  //border-image: url(../assets/frame4.png) 50 round;
+  //border-radius: 5rem;
+  margin-bottom: 4rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .blogpost {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .blogpost {
+    width: 100%;
+  }
+}

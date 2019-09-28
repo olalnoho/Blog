@@ -1,0 +1,23 @@
+.header {
+  font-family: Dosis;
+  grid-column: 1/-1;
+  grid-row: 1/2;
+  background-color: $header-background;
+  border-bottom: 4px solid $background-secondary;
+  padding: 1rem;
+  color: $main-background;
+  &__name {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    i {
+      font-size: 7rem;
+      margin-right: 3rem;
+    }
+    h2 {
+      letter-spacing: 1rem;
+      margin-left: 3rem;
+      font-size: 3.5rem;
+    }
+  }
+}
