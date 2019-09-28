@@ -22,9 +22,11 @@ const Landing = () => {
          refetch({ limit, offset: offset - limit })
          setOffset(offset - limit)
       }
+
+      window.scrollTo(0,0)
    }
 
-   if (loading) return <div className="container" />
+   // if (loading) return <div className="container" />
 
    return (
       <div className="container column">
