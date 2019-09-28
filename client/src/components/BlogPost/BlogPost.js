@@ -12,7 +12,7 @@ const BlogPost = ({ post }) => {
    return (
       <div className="blogpost">
          <div className="blogpost__heading">
-            <Link to={`/post/${post.id}`}> <h3 className="heading-3">{post.title}</h3> </Link>
+            <Link to={`/post/${post.id}`} className="heading-3">{post.title} </Link>
             <strong>{time} </strong>
          </div>
          <div className="blogpost__content">
