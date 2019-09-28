@@ -11,6 +11,7 @@ import Sidebar from './components/UI/Sidebar/Sidebar'
 import Login from './components/Auth/Login/Login'
 import Register from './components/Auth/Register/Register'
 import Create from './components/Create/Create'
+import FullPost from './components/FullPost/FullPost'
 
 
 const getUser = gql`
@@ -41,6 +42,7 @@ function App() {
          <Route path="/login" exact component={(props) => <Login {...props} refetch={refetch} />} />
          <Route path="/register" exact component={props => <Register {...props} refetch={refetch} />} />
          <Route path="/create" exact component={props => <Create loading={loading} data={data} />} />
+         <Route path="/post/:id" exact component={FullPost} />
       </Switch>
    </>
 }

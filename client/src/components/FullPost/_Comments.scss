@@ -1,0 +1,26 @@
+.comment {
+  padding: 1rem;
+  font-size: 1.5rem;
+  width: 50%;
+  &__author {
+     font-size: 1.2rem;
+    span {
+      font-family: Dosis;
+      letter-spacing: 1px;
+    }
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #000;
+}
+
+@media only screen and (max-width: 700px) {
+   .comment {
+     width: 90%;
+   }
+ }

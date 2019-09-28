@@ -5,10 +5,15 @@ module.exports = gql`
       id: ID!
       content: String!
       name: String
-      author: User
+      author: OptionalUser
       post: Post!
       created_at: String!
       updated_at: String
+   }
+
+   type OptionalUser {
+      username: String
+      id: ID
    }
 
    input createCommentInput {

@@ -7,19 +7,23 @@
   padding: 2rem;
   font-size: 1.5rem;
   line-height: 1.5;
-  justify-content: space-around;
   margin: auto;
   width: 60%;
   &__heading {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid $header-background;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     h3 {
+      flex: .78;
       margin: 0;
       font-size: 2rem;
       color: $header-background;
     }
+  }
+
+  &__content {
+    flex: 1;
   }
 
   //border: 20px solid black;

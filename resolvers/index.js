@@ -32,10 +32,22 @@ module.exports = {
             .select('*')
             .where({ post: parent.id })
       },
-      author(parent, args, { db }, info) {
-         return db('users')
+      async author(parent, args, { db }, info) {
+         const user = await db('users')
             .select('*')
             .where({ id: parent.author })
+
+         return user[0]
+      }
+   },
+
+   Comment: {
+      async author(parent, args, { db }, info) {
+         const user = await db('users')
+            .select('*')
+            .where({ id: parent.author })
+
+         return user[0]
       }
    }
 }
