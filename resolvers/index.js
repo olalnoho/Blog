@@ -20,7 +20,7 @@ module.exports = {
             .select('*')
             .where({ author: parent.id })
       },
-      posts(parent, args, { db }, info) {
+      comments(parent, args, { db }, info) {
          return db('comments')
             .select('*')
             .where({ author: parent.id })
