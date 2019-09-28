@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
-
+import postQuery from '../../queries/postQuery'
 const createPost = gql`
    mutation($title: String! $content: String!) {
       createPost(data: {
@@ -16,13 +16,17 @@ const createPost = gql`
 
 const Create = (props) => {
    const [formData, setFormData] = useState({ title: '', content: '' })
-   const [submitPost, { data}] = useMutation(createPost)
+   const [submitPost, { data }] = useMutation(createPost)
 
    const onSubmit = e => {
       e.preventDefault()
-      submitPost({ variables: formData })
+      submitPost({
+         variables: formData, refetchQueries: () => {
+            return [{ query: postQuery, variables: { limit: 5, offset: 0 }, }]
+         }, awaitRefetchQueries: true
+      })
    }
-   
+
    if (props.loading) {
       return <div className="container" />
    } else if (!props.data || (props.data && props.data.me.role !== 'admin')) {
@@ -46,10 +50,10 @@ const Create = (props) => {
                   id="title"
                   placeholder="Title your post..."
                   onChange={e => setFormData({ ...formData, title: e.target.value })} />
-               <textarea 
-               value={formData.content} 
-               placeholder="Text goes here" 
-               onChange={e => setFormData({ ...formData, content: e.target.value })} />
+               <textarea
+                  value={formData.content}
+                  placeholder="Text goes here"
+                  onChange={e => setFormData({ ...formData, content: e.target.value })} />
                <input type="submit" value="Submit post" />
             </form>
          </div>

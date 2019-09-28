@@ -14,12 +14,15 @@ const postQuery = {
    },
 
    async getPosts(parent, args, { db, req }, info) {
+      console.log(args)
       const totalPosts = await db('posts').count('')
       const posts = await db('posts')
          .select('*')
          .orderBy('created_at', 'desc')
          .limit(args.limit)
          .offset(args.offset)
+
+      console.log(posts)
       return {
          posts,
          count: totalPosts[0].count

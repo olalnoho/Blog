@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { gql } from 'apollo-boost'
+//import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
 // import Card from '../UI/Card/Card'
 import BlogPost from '../BlogPost/BlogPost'
-
-const query = gql`
-   query($limit: Int, $offset: Int) {
-      getPosts(limit: $limit offset: $offset) {
-         count
-         posts {
-            id
-            content
-            title,
-            created_at
-         }
-      }
-   }
-`
+import query from '../../queries/postQuery'
+//const query = gql`
+//   query($limit: Int, $offset: Int) {
+//      getPosts(limit: $limit offset: $offset) {
+//         count
+//         posts {
+//            id
+//            content
+//            title,
+//            created_at
+//         }
+//      }
+//   }
+//`
 
 const Landing = () => {
    const limit = 5;
    const [offset, setOffset] = useState(0)
    const [totalPosts, setTotalPosts] = useState(1)
-   const { data, refetch, loading } = useQuery(query, { fetchPolicy: 'no-cache', variables: { limit, offset } })
+   const { data, refetch, loading } = useQuery(query, { fetchPolicy: 'cache-first', variables: { limit, offset } })
 
    useEffect(() => {
       data && setTotalPosts(data.getPosts.count)
