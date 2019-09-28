@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import postQuery from '../../queries/postQuery'
+import numQuery from '../../queries/numPosts'
 const createPost = gql`
    mutation($title: String! $content: String!) {
       createPost(data: {
@@ -22,7 +23,7 @@ const Create = (props) => {
       e.preventDefault()
       submitPost({
          variables: formData, refetchQueries: () => {
-            return [{ query: postQuery, variables: { limit: 5, offset: 0 }, }]
+            return [{ query: postQuery, variables: { limit: 5, offset: 0 }, }, { query: numQuery }]
          }, awaitRefetchQueries: true
       })
    }
