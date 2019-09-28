@@ -15,6 +15,7 @@ module.exports = gql`
       created_at: String!
       updated_at: String
       posts: [Post!]
+      comments: [Comment!]!
    }
 
    type Auth {

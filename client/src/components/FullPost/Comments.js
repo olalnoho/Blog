@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Comments = ({ comment }) => {
-   console.log(comment)
    return (
       <div className="comment">
          <div className="comment__author">

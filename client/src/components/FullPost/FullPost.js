@@ -52,7 +52,7 @@ const FullPost = props => {
             {
                data && data.getPost.comments.length > 0 ?
                data.getPost.comments.map(comment => {
-                  return <Comments id={comment.id} comment={comment} />
+                  return <Comments key={comment.id} id={comment.id} comment={comment} />
                }) : <span> No comments yet </span>
             }
             </div>
