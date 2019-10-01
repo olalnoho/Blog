@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import postQuery from '../../queries/postQuery'
 import numQuery from '../../queries/numPosts'
+import Spinner from '../UI/Spinner/Spinner'
 const createPost = gql`
    mutation($title: String! $content: String!) {
       createPost(data: {
@@ -17,7 +18,7 @@ const createPost = gql`
 
 const Create = (props) => {
    const [formData, setFormData] = useState({ title: '', content: '' })
-   const [submitPost, { data }] = useMutation(createPost)
+   const [submitPost, { data, loading }] = useMutation(createPost)
 
    const onSubmit = e => {
       e.preventDefault()
@@ -37,6 +38,10 @@ const Create = (props) => {
    if (data) {
       return <Redirect to="/" />
    }
+
+   if(loading) return <div className="container">
+      <Spinner/>
+   </div>
    return (
       <div className="container">
          <div className="create">
