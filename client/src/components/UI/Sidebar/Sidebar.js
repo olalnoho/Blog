@@ -1,11 +1,8 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
-//import { useQuery } from '@apollo/react-hooks'
-//import getMostUsedTags from '../../../queries/popularTags'
 
 const Sidebar = ({ loading }) => {
-   //const { data, loading: queryLoading, error } = useQuery(getMostUsedTags)
    const { isAuth, setIsAuth, setUser, user, tagQuery } = useContext(AuthContext)
    const guestLinks = (
       <ul className="sidebar__nav">
