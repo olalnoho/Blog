@@ -55,6 +55,46 @@
       transition: width 0.3s ease-out 0.1s;
     }
   }
+
+  &__search {
+    color: blanchedalmond;
+    margin-top: 5rem;
+
+    &--input {
+      font-family: inherit;
+      color: #555;
+      font-size: 1.5rem;
+      width: 100%;
+      padding: 0.4rem;
+      background-color: $main-background;
+      border: none;
+      outline: none;
+      margin-bottom: 1rem;
+      &::placeholder {
+        color: #555;
+      }
+    }
+  }
+
+  &__tags {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5rem;
+    color: blanchedalmond;
+    &__list {
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0.4rem;
+        font-size: 1.4rem;
+        cursor: pointer;
+        &:hover {
+          background-color: darken($header-background, 5%);
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 1000px) {

@@ -22,8 +22,6 @@ const postQuery = {
    },
 
    async getMostUsedTags(parent, args, { db, req }, info) {
-      // I'm sure this can be done with just knex-function-chaining.
-      // This was just easier then googling stuff.
       const res = await db.raw(`
          SELECT 
             COUNT(*) as count,
@@ -47,7 +45,6 @@ const postQuery = {
 
 const postMutation = {
    async createPost(parent, { data }, { db, req }, info) {
-      console.log(data)
       const userId = getUserId(req)
 
       try {

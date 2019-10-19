@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
+import { AuthContext } from '../../context/AuthContext'
 import postQuery from '../../queries/postQuery'
 import numQuery from '../../queries/numPosts'
 import Spinner from '../UI/Spinner/Spinner'
@@ -18,6 +19,7 @@ const createPost = gql`
 `
 
 const Create = (props) => {
+   const { tagQuery } = useContext(AuthContext)
    const [formData, setFormData] = useState({ title: '', content: '', tags: [] })
    const [tags, setTags] = useState('')
    const [submitPost, { data, loading }] = useMutation(createPost)
@@ -28,7 +30,7 @@ const Create = (props) => {
          variables: formData, refetchQueries: () => {
             return [{ query: postQuery, variables: { limit: 5, offset: 0 }, }, { query: numQuery }]
          }, awaitRefetchQueries: true
-      })
+      }).then(_ => tagQuery.refetch())
    }
 
    const tagInput = e => {
@@ -91,7 +93,7 @@ const Create = (props) => {
                   onChange={e => setTags(e.target.value)}
                   onKeyUp={tagInput}
                />
-               <input type="submit" value="Create new post!" onClick={onSubmit}/>
+               <input type="submit" value="Create new post!" onClick={onSubmit} />
             </div>
          </div>
       </div>
