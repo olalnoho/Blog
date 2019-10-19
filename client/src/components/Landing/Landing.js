@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import BlogPost from '../BlogPost/BlogPost'
-import query from '../../queries/postQuery'
+import getPostsQuery from '../../queries/postQuery'
 import numQuery from '../../queries/numPosts'
 
 const Landing = () => {
@@ -9,7 +9,7 @@ const Landing = () => {
    const [offset, setOffset] = useState(0)
    const { data: numData, error: numError } = useQuery(numQuery)
    const [totalPosts, setTotalPosts] = useState(1)
-   const { data, error, refetch, loading } = useQuery(query, { fetchPolicy: 'cache-first', variables: { limit, offset } })
+   const { data, error, refetch, loading } = useQuery(getPostsQuery, { fetchPolicy: 'cache-first', variables: { limit, offset } })
    useEffect(() => {
       numData && setTotalPosts(numData.numberOfPosts)
    }, [numData])

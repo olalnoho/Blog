@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
+import Tags from './Tags'
+import Search from './Search'
 
-const Sidebar = ({ loading }) => {
+const Sidebar = ({ loading, ...props }) => {
    const { isAuth, setIsAuth, setUser, user, tagQuery } = useContext(AuthContext)
    const guestLinks = (
       <ul className="sidebar__nav">
@@ -36,29 +38,12 @@ const Sidebar = ({ loading }) => {
       </ul>
    )
    if (loading) return <div className="sidebar" />
+   
    return (
       <div className="sidebar">
          {isAuth ? user.role === 'admin' ? authAdminLinks : authLinks : guestLinks}
-         <div className="sidebar__search">
-            <h3 className="heading-4">Search for posts</h3>
-            <input className="sidebar__search--input" placeholder="Search text" />
-            <button className="btn sidebar__search--btn">Search</button>
-         </div>
-         <div className="sidebar__tags">
-            {tagQuery.error ? <h3 className="heading-4">Error getting the tags</h3> :
-               <>
-                  <h3 className="heading-4">Most popular tags</h3>
-                  <ul className="sidebar__tags__list">
-                     {!tagQuery.loading && tagQuery.data.getMostUsedTags.map(({ tag, count }) => {
-                        return <li key={tag}>
-                           <span> {tag} </span>
-                           <span> {count} </span>
-                        </li>
-                     })}
-                  </ul>
-               </>
-            }
-         </div>
+         <Search />
+         {tagQuery && <Tags tagQuery={tagQuery} />}
       </div>
    )
 }
