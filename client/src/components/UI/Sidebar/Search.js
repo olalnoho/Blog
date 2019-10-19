@@ -10,7 +10,7 @@ const Search = props => {
             value={searchText}
             onChange={e => setSearchText(e.target.value)}
             className="sidebar__search--input"
-            placeholder="Search text" />
+            />
          <button
             onClick={e => {
                history.push({

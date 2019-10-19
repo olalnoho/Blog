@@ -198,36 +198,46 @@
 }
 
 .sidebar__search {
+  text-align: center;
   color: blanchedalmond;
   margin-top: 5rem;
 }
 
 .sidebar__search--input {
   font-family: inherit;
-  color: #555;
+  color: white;
   font-size: 1.5rem;
   width: 100%;
-  padding: 0.4rem;
-  background-color: #DDD;
+  padding: 0.5rem;
+  background-color: #ff7972;
   border: none;
   outline: none;
   margin-bottom: 1rem;
 }
 
 .sidebar__search--input::-webkit-input-placeholder {
-  color: #555;
+  color: white;
 }
 
 .sidebar__search--input:-ms-input-placeholder {
-  color: #555;
+  color: white;
 }
 
 .sidebar__search--input::-ms-input-placeholder {
-  color: #555;
+  color: white;
 }
 
 .sidebar__search--input::placeholder {
-  color: #555;
+  color: white;
+}
+
+.sidebar__search .btn {
+  width: 100%;
+  padding: 0.3rem 1rem;
+  outline: none;
+  border: none;
+  background-color: salmon;
+  color: blanchedalmond;
 }
 
 .sidebar__tags {
@@ -820,7 +830,7 @@ ul {
 }
 
 .activelink {
-  color: #ffc267 !important;
+  color: #FFB572 !important;
 }
 
 @media only screen and (max-width: 1000px) {

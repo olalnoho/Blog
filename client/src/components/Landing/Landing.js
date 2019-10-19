@@ -5,16 +5,18 @@ import getPostsQuery from '../../queries/postQuery'
 import numQuery from '../../queries/numPosts'
 
 const Landing = () => {
+
    const limit = 5;
    const [offset, setOffset] = useState(0)
    const { data: numData, error: numError } = useQuery(numQuery)
    const [totalPosts, setTotalPosts] = useState(1)
    const { data, error, refetch, loading } = useQuery(getPostsQuery, { fetchPolicy: 'cache-first', variables: { limit, offset } })
+
    useEffect(() => {
       numData && setTotalPosts(numData.numberOfPosts)
    }, [numData])
 
-   const paginate = (dir) => {
+   const paginate = dir => {
       if (dir === 'forwards') {
          refetch({ limit, offset: offset + limit })
          setOffset(limit + offset)
@@ -36,11 +38,16 @@ const Landing = () => {
             <div className="landing__post">
                {data && data.getPosts.map(post => <BlogPost key={post.id} post={post} />)}
             </div>
-            {totalPosts > 0 && <div className="landing__pagination">
-               {offset > 0 ? <i className="fas fa-arrow-left" onClick={e => paginate('back')}></i> : <i></i>}
-               <strong>Page {(offset / 5) + 1} of  {Math.ceil(totalPosts / limit)} </strong>
-               {(offset + limit) < totalPosts ? <i className="fas fa-arrow-right" onClick={e => paginate('forwards')}></i> : <i></i>}
-            </div>}
+
+            {totalPosts > limit &&
+               <div className="landing__pagination">
+                  {offset > 0 ? <i className="fas fa-arrow-left" onClick={e => paginate('back')}></i> : <i></i>}
+
+                  <strong>Page {(offset / 5) + 1} of  {Math.ceil(totalPosts / limit)} </strong>
+
+                  {(offset + limit) < totalPosts ? <i className="fas fa-arrow-right" onClick={e => paginate('forwards')}></i> : <i></i>}
+               </div>
+            }
          </div>
       </div>
    )

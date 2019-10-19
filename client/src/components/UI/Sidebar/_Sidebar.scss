@@ -57,22 +57,32 @@
   }
 
   &__search {
+    text-align: center;
     color: blanchedalmond;
     margin-top: 5rem;
 
     &--input {
       font-family: inherit;
-      color: #555;
+      color: white;
       font-size: 1.5rem;
       width: 100%;
-      padding: 0.4rem;
-      background-color: $main-background;
+      padding: 0.5rem;
+      background-color: #ff7972;
       border: none;
       outline: none;
       margin-bottom: 1rem;
       &::placeholder {
-        color: #555;
+        color: white;
       }
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.3rem 1rem;
+      outline: none;
+      border: none;
+      background-color: salmon;
+      color: blanchedalmond;
     }
   }
 
