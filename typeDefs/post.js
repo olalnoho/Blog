@@ -38,6 +38,7 @@ module.exports = gql`
       getPost(id: ID!): Post!
       getPosts(limit: Int, offset: Int): [Post]!
       numberOfPosts: Int!
+      getPostsByTag(tag: String): [Post!]!
       getMostUsedTags: [CountAndTag!]!
    }
    
