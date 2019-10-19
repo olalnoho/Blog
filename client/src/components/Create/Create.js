@@ -17,7 +17,8 @@ const createPost = gql`
 `
 
 const Create = (props) => {
-   const [formData, setFormData] = useState({ title: '', content: '' })
+   const [formData, setFormData] = useState({ title: '', content: '', tags: [] })
+   const [tags, setTags] = useState('')
    const [submitPost, { data, loading }] = useMutation(createPost)
 
    const onSubmit = e => {
@@ -27,6 +28,20 @@ const Create = (props) => {
             return [{ query: postQuery, variables: { limit: 5, offset: 0 }, }, { query: numQuery }]
          }, awaitRefetchQueries: true
       })
+   }
+
+   const tagInput = e => {
+      if (e.key === ',') {
+         let tag = tags.split(',')[0]
+         setFormData({ ...formData, tags: [...formData.tags, tag] })
+         setTags('')
+      }
+   }
+
+   const deleteTag = i => {
+      const tagsArray = formData.tags.slice()
+      tagsArray.splice(i, 1)
+      setFormData({ ...formData, tags: tagsArray })
    }
 
    if (props.loading) {
@@ -39,9 +54,10 @@ const Create = (props) => {
       return <Redirect to="/" />
    }
 
-   if(loading) return <div className="container">
-      <Spinner/>
+   if (loading) return <div className="container">
+      <Spinner />
    </div>
+
    return (
       <div className="container">
          <div className="create">
@@ -60,6 +76,20 @@ const Create = (props) => {
                   value={formData.content}
                   placeholder="Text goes here"
                   onChange={e => setFormData({ ...formData, content: e.target.value })} />
+               <div className="tag-holder">
+                  <span className="labelfortags"> Your tags: </span>
+                  {formData.tags.map((t, i) => <span
+                     key={i}
+                     className="tag"
+                  > {t} <span onClick={e => deleteTag(i)} className="remove-tag"></span> </span>)}
+               </div>
+               <input
+                  type="text"
+                  value={tags}
+                  placeholder="Tags. Seperate them by commas"
+                  onChange={e => setTags(e.target.value)}
+                  onKeyUp={tagInput}
+               />
                <input type="submit" value="Submit post" />
             </form>
          </div>

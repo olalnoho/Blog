@@ -88,7 +88,7 @@
   background-color: #e24f48;
   border-bottom: 4px solid #e45d57;
   padding: 1rem;
-  color: #DAF5A9;
+  color: #DDD;
   text-shadow: .2rem .3rem .5rem black;
 }
 
@@ -183,8 +183,8 @@
 .sidebar__nav--items:hover::before {
   width: 100%;
   background-color: salmon;
-  -webkit-transition: width 0.6s ease-out 0.1s;
-  transition: width 0.6s ease-out 0.1s;
+  -webkit-transition: width 0.3s ease-out 0.1s;
+  transition: width 0.3s ease-out 0.1s;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -225,7 +225,7 @@
 
 .landing {
   padding: 2rem;
-  background-color: #DAF5A9;
+  background-color: #DDD;
   margin-top: 4rem;
   width: 100%;
   display: -webkit-box;
@@ -251,9 +251,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -261,6 +261,11 @@
 
 .landing__pagination i {
   cursor: pointer;
+  margin: 0 2rem;
+}
+
+.landing__pagination strong {
+  font-size: 2rem;
 }
 
 .card {
@@ -329,6 +334,7 @@
 }
 
 .create {
+  max-width: 90vw;
   margin-top: 2rem;
   padding: 1rem;
   -webkit-box-flex: 1;
@@ -395,6 +401,54 @@
   margin-bottom: 2rem;
 }
 
+.create .tag-holder {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2rem;
+}
+
+.create .tag-holder .labelfortags {
+  font-size: 1.4rem;
+  margin-bottom: 0;
+  margin-right: 1rem;
+  color: #888;
+  font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.create .tag {
+  margin: 0.2rem;
+  padding: 0.4rem;
+  font-size: 1.5rem;
+  background-color: #e24f48;
+  color: #ddd;
+}
+
+.create .tag:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.create .tag:hover {
+  background-color: #df3a32;
+}
+
+.create .remove-tag::after {
+  cursor: pointer;
+  content: "x";
+  display: inline-block;
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
 .blogpost {
   -webkit-box-shadow: inset 0.2rem 0.2rem 0.2rem grey, inset -0.2rem -0.2rem 0.2rem grey;
           box-shadow: inset 0.2rem 0.2rem 0.2rem grey, inset -0.2rem -0.2rem 0.2rem grey;
@@ -407,7 +461,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   min-height: 20rem;
-  background-color: #e0f7b7;
+  background-color: #e5e5e5;
   padding: 2rem;
   font-size: 1.5rem;
   line-height: 1.5;
@@ -505,7 +559,7 @@
 
 .fullpost__content {
   font-family: inherit;
-  background-color: #e0f7b7;
+  background-color: #e5e5e5;
   width: 80%;
   margin: auto;
   margin-top: 4rem;
@@ -669,7 +723,7 @@ html {
 .container {
   grid-column: 2/-2;
   grid-row: 2/-1;
-  background-color: #DAF5A9;
+  background-color: #DDD;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

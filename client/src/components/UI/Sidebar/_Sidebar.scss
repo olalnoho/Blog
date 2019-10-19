@@ -52,7 +52,7 @@
     &--items:hover::before {
       width: 100%;
       background-color: salmon;
-      transition: width 0.6s ease-out 0.1s;
+      transition: width 0.3s ease-out 0.1s;
     }
   }
 }

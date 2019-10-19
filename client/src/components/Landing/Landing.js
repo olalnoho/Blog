@@ -36,11 +36,11 @@ const Landing = () => {
             <div className="landing__post">
                {data && data.getPosts.map(post => <BlogPost key={post.id} post={post} />)}
             </div>
-            <div className="landing__pagination">
+            {totalPosts > 0 && <div className="landing__pagination">
                {offset > 0 ? <i className="fas fa-arrow-left" onClick={e => paginate('back')}></i> : <i></i>}
                <strong>Page {(offset / 5) + 1} of  {Math.ceil(totalPosts / limit)} </strong>
                {(offset + limit) < totalPosts ? <i className="fas fa-arrow-right" onClick={e => paginate('forwards')}></i> : <i></i>}
-            </div>
+            </div>}
          </div>
       </div>
    )
