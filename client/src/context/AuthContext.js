@@ -10,6 +10,10 @@ export const AuthContext = React.createContext({
 })
 
 export default props => {
+   // useQuery is placed here so i get access
+   // to refetch in other components.
+   // like Create, after submitting new post.
+
    const { data, refetch, loading, error } = useQuery(getMostUsedTags)
    const [authStatus, setAuthStatus] = useState(false)
    const [user, setUser] = useState({})
