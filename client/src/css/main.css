@@ -334,7 +334,6 @@
 }
 
 .create {
-  max-width: 90vw;
   margin-top: 2rem;
   padding: 1rem;
   -webkit-box-flex: 1;
@@ -399,6 +398,7 @@
   border-radius: 2rem;
   height: 80%;
   margin-bottom: 2rem;
+  min-height: 20rem;
 }
 
 .create .tag-holder {

@@ -9,12 +9,14 @@ module.exports = gql`
       created_at: String!
       updated_at: String
       author: User!
+      tags: [String!]!
       comments: [Comment!]!
    }
 
    input createPostInput {
       title: String
       content: String
+      tags: [String!]
    }
 
    input updatePostInput {
@@ -27,10 +29,16 @@ module.exports = gql`
       count: Int!
    }
 
+   type CountAndTag {
+      count: Int!
+      tag: String!
+   }
+
    extend type Query {
       getPost(id: ID!): Post!
       getPosts(limit: Int, offset: Int): [Post]!
       numberOfPosts: Int!
+      getMostUsedTags: [CountAndTag!]!
    }
    
    extend type Mutation {

@@ -21,6 +21,24 @@ const postQuery = {
          .offset(args.offset)
    },
 
+   async getMostUsedTags(parent, args, { db, req }, info) {
+      // I'm sure this can be done with just knex-function-chaining.
+      // This was just easier then googling stuff.
+      const res = await db.raw(`
+         SELECT 
+            COUNT(*) as count,
+            tag
+         FROM (
+            SELECT unnest(tags) as tag FROM posts
+         ) as tbl
+         GROUP BY tag
+         ORDER BY count DESC
+         LIMIT 5;
+      `)
+
+      return res.rows
+   },
+
    async numberOfPosts(parent, args, { db }) {
       const count = await db('posts').count()
       return count[0].count
@@ -29,6 +47,7 @@ const postQuery = {
 
 const postMutation = {
    async createPost(parent, { data }, { db, req }, info) {
+      console.log(data)
       const userId = getUserId(req)
 
       try {

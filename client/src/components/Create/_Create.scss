@@ -1,5 +1,5 @@
 .create {
-  max-width: 90vw;
+  //max-width: 90vw;
   margin-top: 2rem;
   padding: 1rem;
   flex: 1;
@@ -34,6 +34,7 @@
     border-radius: 2rem;
     height: 80%;
     margin-bottom: 2rem;
+    min-height: 20rem;
   }
 
   .tag-holder {
@@ -75,3 +76,9 @@
     margin-left: 1rem;
   }
 }
+
+// @media screen and (max-width: 1000px) {
+//   .create {
+//     width: 100%;
+//   }
+// }

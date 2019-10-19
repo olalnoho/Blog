@@ -6,10 +6,11 @@ import postQuery from '../../queries/postQuery'
 import numQuery from '../../queries/numPosts'
 import Spinner from '../UI/Spinner/Spinner'
 const createPost = gql`
-   mutation($title: String! $content: String!) {
+   mutation($title: String! $content: String! $tags: [String!]) {
       createPost(data: {
          title: $title,
-         content: $content
+         content: $content,
+         tags: $tags
       }) {
          id
       }
@@ -31,9 +32,8 @@ const Create = (props) => {
    }
 
    const tagInput = e => {
-      if (e.key === ',') {
-         let tag = tags.split(',')[0]
-         setFormData({ ...formData, tags: [...formData.tags, tag] })
+      if (e.key === 'Enter') {
+         setFormData({ ...formData, tags: [...formData.tags, tags] })
          setTags('')
       }
    }
@@ -64,7 +64,8 @@ const Create = (props) => {
             <h3 className="heading-3">
                Create a new post
             </h3>
-            <form className="form" onSubmit={onSubmit}>
+            {/* I made this a div -- instead of form -- so i can use enter for tag submit */}
+            <div className="form">
                <input
                   value={formData.title}
                   autoComplete="off"
@@ -86,12 +87,12 @@ const Create = (props) => {
                <input
                   type="text"
                   value={tags}
-                  placeholder="Tags. Seperate them by commas"
+                  placeholder="Tags. Press enter to add them."
                   onChange={e => setTags(e.target.value)}
                   onKeyUp={tagInput}
                />
-               <input type="submit" value="Submit post" />
-            </form>
+               <input type="submit" value="Create new post!" onClick={onSubmit}/>
+            </div>
          </div>
       </div>
    )
