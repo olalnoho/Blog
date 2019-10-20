@@ -57,6 +57,56 @@
   transform: translateY(2px);
 }
 
+.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+.hamburgercontainer {
+  display: inline-flex;
+  cursor: pointer;
+  width: 12px;
+  margin-left: auto;
+  margin-top: 2rem;
+  display: none;
+}
+.hamburger {
+  width: 2px;
+  height: 12px;
+  background-color: #fff;
+  display: inline-flex;
+  margin: 0 0.4rem;
+  position: relative;
+}
+
+.hamburger:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5px;
+  display: inline-block;
+  width: 2px;
+  height: 12px;
+  background-color: #fff;
+}
+
+.hamburger::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 5px;
+  display: inline-block;
+  width: 2px;
+  height: 12px;
+  background-color: #fff;
+}
+
+@media only screen and (max-width: 1000px) {
+  .hamburgercontainer {
+    display: block;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .form {
     width: 90%;

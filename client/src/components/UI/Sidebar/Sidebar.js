@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
 import Tags from './Tags'
@@ -6,6 +6,7 @@ import Search from './Search'
 
 const Sidebar = ({ loading, ...props }) => {
    const { isAuth, setIsAuth, setUser, user, tagQuery } = useContext(AuthContext)
+   const [isHidden, setIsHidden] = useState(true)
    const guestLinks = (
       <ul className="sidebar__nav">
          <li className="sidebar__nav--items"> <NavLink exact activeClassName="activelink" to="/">Home</NavLink></li>
@@ -41,9 +42,12 @@ const Sidebar = ({ loading, ...props }) => {
    
    return (
       <div className="sidebar">
+         <div onClick={e => setIsHidden(!isHidden)} className="hamburgercontainer">
+         <div className="hamburger"></div>
+         </div>
          {isAuth ? user.role === 'admin' ? authAdminLinks : authLinks : guestLinks}
-         <Search />
-         {tagQuery && <Tags tagQuery={tagQuery} />}
+         <Search hidden={isHidden}/>
+         {tagQuery && <Tags hidden={isHidden} tagQuery={tagQuery} />}
       </div>
    )
 }

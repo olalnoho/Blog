@@ -4,7 +4,7 @@ const Search = props => {
    const history = useHistory()
    const [searchText, setSearchText] = useState('')
    return (
-      <div className="sidebar__search">
+      <div className={`sidebar__search ${props.hidden && 'hidden'}`}>
          <h3 className="heading-4">Search for posts</h3>
          <input
             value={searchText}

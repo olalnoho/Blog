@@ -7,6 +7,12 @@
    align-items: center;
 }
 
+@media only screen and (max-width: 1000px) {
+   .login {
+     margin-top: 4rem;
+   }
+ }
+
 @media only screen and (max-width: 800px) {
    .login {
       justify-content: center;

@@ -99,6 +99,7 @@
     color: blanchedalmond;
     &__list {
       li {
+        transition: all .2s;
         display: flex;
         justify-content: space-between;
         padding: 1rem 0.4rem;

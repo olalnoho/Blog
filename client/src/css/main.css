@@ -84,6 +84,62 @@
           transform: translateY(2px);
 }
 
+.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+
+.hamburgercontainer {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  cursor: pointer;
+  width: 12px;
+  margin-left: auto;
+  margin-top: 2rem;
+  display: none;
+}
+
+.hamburger {
+  width: 2px;
+  height: 12px;
+  background-color: #fff;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin: 0 0.4rem;
+  position: relative;
+}
+
+.hamburger:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5px;
+  display: inline-block;
+  width: 2px;
+  height: 12px;
+  background-color: #fff;
+}
+
+.hamburger::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 5px;
+  display: inline-block;
+  width: 2px;
+  height: 12px;
+  background-color: #fff;
+}
+
+@media only screen and (max-width: 1000px) {
+  .hamburgercontainer {
+    display: block;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .form {
     width: 90%;
@@ -268,6 +324,8 @@
 }
 
 .sidebar__tags__list li {
+  -webkit-transition: all .2s;
+  transition: all .2s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -393,6 +451,12 @@
           align-items: center;
 }
 
+@media only screen and (max-width: 1000px) {
+  .login {
+    margin-top: 4rem;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .login {
     -webkit-box-pack: center;
@@ -421,6 +485,7 @@
 
 @media only screen and (max-width: 800px) {
   .register {
+    margin-top: 4rem;
     width: 100%;
     height: 100%;
     -webkit-box-pack: center;

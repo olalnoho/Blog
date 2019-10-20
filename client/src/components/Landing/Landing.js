@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import BlogPost from '../BlogPost/BlogPost'
 import getPostsQuery from '../../queries/postQuery'
 import numQuery from '../../queries/numPosts'
+import Spinner from '../UI/Spinner/Spinner'
 
 const Landing = () => {
 
@@ -28,7 +29,9 @@ const Landing = () => {
       //window.scrollTo(0,0)
    }
 
-   if (loading) return <div className="container" />
+   if (loading) return <div className="container">
+      <Spinner />
+   </div>
 
    return (
       <div className="container column">
