@@ -1,6 +1,8 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
-const Tags = ({ tagQuery }) => {
+const Tags = ({ tagQuery, ...props }) => {
+   const history = useHistory()
    return (
       <div className="sidebar__tags">
          {tagQuery.error ? <h3 className="heading-4">Error getting the tags</h3> :
@@ -8,7 +10,13 @@ const Tags = ({ tagQuery }) => {
                <h3 className="heading-4">Most popular tags</h3>
                <ul className="sidebar__tags__list">
                   {!tagQuery.loading && tagQuery.data.getMostUsedTags.map(({ tag, count }) => {
-                     return <li key={tag}>
+                     return <li
+                        key={tag}
+                        onClick={e => {
+                           history.push({
+                              pathname: `/tags/${tag}`,
+                           })
+                        }}>
                         <span> {tag} </span>
                         <span> {count} </span>
                      </li>

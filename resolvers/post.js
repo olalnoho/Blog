@@ -12,13 +12,14 @@ const postQuery = {
 
       return post[0]
    },
-   //SELECT * FROM posts WHERE 'robots' = ANY(tags);
+
    async getPostsByTag(parent, { tag }, { db, req }, info) {
       const res = await db.raw(`
          SELECT 
             *
          FROM posts 
-         WHERE '${tag}' = ANY(tags);
+         WHERE '${tag}' = ANY(tags)
+         ORDER BY created_at DESC;
       `)
       return res.rows
    },

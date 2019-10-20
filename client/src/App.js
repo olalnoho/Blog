@@ -12,6 +12,7 @@ import Login from './components/Auth/Login/Login'
 import Register from './components/Auth/Register/Register'
 import Create from './components/Create/Create'
 import FullPost from './components/FullPost/FullPost'
+import Tags from './components/PostsByTags/PostsByTags';
 
 
 const getUser = gql`
@@ -43,6 +44,7 @@ function App() {
          <Route path="/register" exact component={props => <Register {...props} refetch={refetch} />} />
          <Route path="/create" exact component={props => <Create loading={loading} data={data} />} />
          <Route path="/post/:id" exact component={FullPost} />
+         <Route path="/tags/:tag" exact component={Tags} />
       </Switch>
    </>
 }
