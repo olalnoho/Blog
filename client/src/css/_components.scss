@@ -29,7 +29,7 @@
     cursor: pointer;
     color: white;
     align-self: flex-end;
-    width: 24%;
+    width: 30%;
     padding: 1rem;
     background-color: $button-color;
     transition: background-color 0.3s;
@@ -57,11 +57,12 @@
   transform: translateY(2px);
 }
 
-.hidden {
+.smallScreenHidden {
   opacity: 0 !important;
   visibility: hidden !important;
   display: none !important;
 }
+
 .hamburgercontainer {
   display: inline-flex;
   cursor: pointer;
@@ -81,24 +82,33 @@
 
 .hamburger:after {
   content: "";
+  width: 2px;
   position: absolute;
   top: 0;
   left: 5px;
   display: inline-block;
-  width: 2px;
   height: 12px;
   background-color: #fff;
 }
 
 .hamburger::before {
   content: "";
+  width: 2px;
   position: absolute;
   top: 0;
   right: 5px;
   display: inline-block;
-  width: 2px;
   height: 12px;
   background-color: #fff;
+}
+
+
+@media only screen and (min-width: 1000px) {
+  .smallScreenHidden {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  } 
 }
 
 @media only screen and (max-width: 1000px) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const BlogPost = ({ post }) => {
+const BlogPost = React.memo(({ post }) => {
    const time = new Intl.DateTimeFormat('en-GB', {
       year: 'numeric',
       month: 'long',
@@ -20,6 +20,6 @@ const BlogPost = ({ post }) => {
          </div>
       </div>
    )
-}
+})
 
 export default BlogPost
