@@ -24,6 +24,18 @@ const postQuery = {
       return res.rows
    },
 
+   async getPostsBySearch(parent, { query }, { db, req }, info) {
+      const res = await db.raw(`
+         SELECT
+            *
+         FROM posts
+         WHERE title ILIKE '%${query}%' OR content ILIKE '%${query}%'
+         ORDER BY created_at DESC;
+      `)
+
+      return res.rows
+   },
+
    async getPosts(parent, args, { db, req }, info) {
       return db('posts')
          .select('*')

@@ -10,14 +10,17 @@ const Search = props => {
             value={searchText}
             onChange={e => setSearchText(e.target.value)}
             className="sidebar__search--input"
-            />
+         />
          <button
             onClick={e => {
-               history.push({
-                  pathname: `/`,
-                  search: `?query=${searchText}`,
-                  state: { searchTerm: searchText }
-               })
+               if (searchText) {
+                  history.push({
+                     pathname: `/search`,
+                     search: `?query=${searchText}`,
+                     state: { searchTerm: searchText }
+                  })
+                  setSearchText('')
+               }
             }}
             className="btn sidebar__search--btn">Search</button>
       </div>

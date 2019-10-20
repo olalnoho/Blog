@@ -38,7 +38,6 @@ const Landing = () => {
             <div className="landing__post">
                {data && data.getPosts.map(post => <BlogPost key={post.id} post={post} />)}
             </div>
-
             {totalPosts > limit &&
                <div className="landing__pagination">
                   {offset > 0 ? <i className="fas fa-arrow-left" onClick={e => paginate('back')}></i> : <i></i>}

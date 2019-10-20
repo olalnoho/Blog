@@ -50,6 +50,11 @@
 .btn {
   padding: 0.3rem 0.4rem;
   font-family: inherit;
+  transition: all 0.2s;
+}
+
+.btn:active {
+  transform: translateY(2px);
 }
 
 @media only screen and (max-width: 800px) {

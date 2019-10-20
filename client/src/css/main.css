@@ -75,6 +75,13 @@
 .btn {
   padding: 0.3rem 0.4rem;
   font-family: inherit;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.btn:active {
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
 }
 
 @media only screen and (max-width: 800px) {
@@ -238,6 +245,11 @@
   border: none;
   background-color: salmon;
   color: blanchedalmond;
+  cursor: pointer;
+}
+
+.sidebar__search .btn:hover {
+  background-color: #fa7768;
 }
 
 .sidebar__tags {

@@ -13,6 +13,7 @@ import Register from './components/Auth/Register/Register'
 import Create from './components/Create/Create'
 import FullPost from './components/FullPost/FullPost'
 import Tags from './components/PostsByTags/PostsByTags';
+import PostBySearch from './components/PostBySearch/PostBySearch';
 
 
 const getUser = gql`
@@ -45,6 +46,7 @@ function App() {
          <Route path="/create" exact component={props => <Create loading={loading} data={data} />} />
          <Route path="/post/:id" exact component={FullPost} />
          <Route path="/tags/:tag" exact component={Tags} />
+         <Route path="/search" exact component={PostBySearch} />
       </Switch>
    </>
 }
