@@ -24,6 +24,8 @@ const CreateComment = ({ postId, query }) => {
          variables: { postId, data }, refetchQueries: () => {
             return [{ query, variables: { id: postId } }]
          }, awaitRefetchQueries: true
+      }).then(_ => {
+         setFormData({...formData, content: ''})
       })
    }
 

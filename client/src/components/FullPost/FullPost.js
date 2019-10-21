@@ -27,9 +27,6 @@ const query = gql`
 const FullPost = props => {
    const id = props.match.params.id
    const { data, error, loading } = useQuery(query, { variables: { id } })
-   if (data) {
-      console.log(data)
-   }
    if (loading) return <div className="container" />
    return (
       <div className="container">
