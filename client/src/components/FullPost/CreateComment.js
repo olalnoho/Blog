@@ -27,20 +27,22 @@ const CreateComment = ({ postId, query }) => {
       })
    }
 
-   if(loading) {
+   if (loading) {
       return <Spinner />
    }
    return (
       <>
-      {error && error.graphQLErrors.length && <p style={{textAlign: 'center'}} className="error"> Something went wrong, try again! </p>}
+         {error && error.graphQLErrors.length && <p style={{ textAlign: 'center' }} className="error"> Something went wrong, try again! </p>}
          <form className="form" onSubmit={onSubmit}>
             <input
                value={formData.content}
+               required
                onChange={e => setFormData({ ...formData, content: e.target.value })}
                placeholder="Comment on the post"
                type="text" />
             {!isAuth && <input
                value={formData.name}
+               required
                onChange={e => setFormData({ ...formData, name: e.target.value })}
                placeholder="Your name" type="text" />}
             <input type="submit" />
