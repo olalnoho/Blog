@@ -14,30 +14,25 @@ const postQuery = {
    },
 
    async getPostsByTag(parent, { tag }, { db, req }, info) {
-      tag = tag.replace("'", '')
-      // temporary fix for sql Injection
-      // bad fix, but will do for now, i guess.
       const res = await db.raw(`
          SELECT 
             *
          FROM posts 
-         WHERE '${tag}' = ANY(tags)
+         WHERE ? = ANY(tags)
          ORDER BY created_at DESC;
-      `)
+      `, tag)
       return res.rows
    },
 
    async getPostsBySearch(parent, { query }, { db, req }, info) {
-      query = query.replace("'", '')
-      // temporary fix for sql Injection
-      // bad fix, but will do for now, i guess.
+      query = `%${query}%`
       const res = await db.raw(`
          SELECT
             *
          FROM posts
-         WHERE title ILIKE '%${query.replace("'", '')}%' OR content ILIKE '%${query}%'
+         WHERE title ILIKE ? OR content ILIKE ?
          ORDER BY created_at DESC;
-      `)
+      `, [query, query])
 
       return res.rows
    },
