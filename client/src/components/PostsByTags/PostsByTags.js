@@ -15,7 +15,7 @@ const Tags = props => {
    return (
       <div className="container column">
          <div className="landing">
-            {error && error.graphQLErrors.map(err => <p className="error" key={err.message}> {err.message} </p>)}
+            {error && error.graphQLErrors.length && <p className="error"> Something went wrong.. </p>}
             <div className="landing__post">
                {data && data.getPostsByTag.map(post => {
                   return <BlogPost key={post.id} post={post} />

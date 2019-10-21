@@ -10,9 +10,6 @@ const commentQuery = {
       const comments = await db('comments')
          .join('posts', 'posts.id', 'comments.post')
          .select('posts.author AS pa', 'posts.id AS pid', 'comments.id AS cid')
-         .then(data => {
-
-         })
    }
 }
 
