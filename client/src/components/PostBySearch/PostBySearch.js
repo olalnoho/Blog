@@ -9,7 +9,6 @@ const PostBySearch = props => {
    let q = ''
    if (queryExists) {
       q = decodeURI(queryExists[1])
-      console.log(q)
    }
    const { data, error, loading } = useQuery(SearchPostQuery, { variables: { query: q } })
 
