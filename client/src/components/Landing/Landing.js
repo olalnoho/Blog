@@ -17,13 +17,26 @@ const Landing = () => {
       numData && setTotalPosts(numData.numberOfPosts)
    }, [numData])
 
+   useEffect(() => {
+      let offset = localStorage.getItem('offset')
+      if (offset) {
+         setOffset(+offset)
+      }
+   }, [])
+
    const paginate = dir => {
       if (dir === 'forwards') {
          refetch({ limit, offset: offset + limit })
-         setOffset(limit + offset)
+         setOffset(offset => {
+            localStorage.setItem('offset', limit + offset)
+            return limit + offset
+         })
       } else if (dir === 'back') {
          refetch({ limit, offset: offset - limit })
-         setOffset(offset - limit)
+         setOffset(offset => {
+            localStorage.setItem('offset', offset - limit)
+            return offset - limit
+         })
       }
 
       //window.scrollTo(0,0)
@@ -39,7 +52,7 @@ const Landing = () => {
             {error && error.graphQLErrors.map(err => <p className="error" key={err.message}> {err.message} </p>)}
             {numError && numError.graphQLErrors.map(err => <p className="error" key={err.message}> {err.message} </p>)}
             <div className="landing__post">
-               {data && data.getPosts.map(post => <BlogPost key={post.id} post={post} />)}
+               {data && data.getPosts.map(post => <BlogPost currentOffset={offset} currentLimit={limit} key={post.id} post={post} />)}
             </div>
             {totalPosts > limit &&
                <div className="landing__pagination">

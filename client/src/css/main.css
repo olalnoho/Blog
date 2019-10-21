@@ -671,6 +671,18 @@
   color: #e24f48;
 }
 
+.blogpost__heading--right i {
+  cursor: pointer;
+  margin-left: 2rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  color: gray;
+}
+
+.blogpost__heading--right i:hover {
+  color: black;
+}
+
 .blogpost__content {
   -webkit-box-flex: 1;
       -ms-flex: 1;

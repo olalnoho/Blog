@@ -23,6 +23,18 @@
       font-size: 2rem;
       color: $header-background;
     }
+
+    &--right {
+      i {
+        cursor: pointer;
+        margin-left: 2rem;
+        transition: all 0.3s;
+        color: gray;
+      }
+      i:hover {
+        color: black;
+      }
+    }
   }
 
   &__content {
