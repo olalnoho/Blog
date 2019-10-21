@@ -15,6 +15,8 @@ const postQuery = {
 
    async getPostsByTag(parent, { tag }, { db, req }, info) {
       tag = tag.replace("'", '')
+      // temporary fix for sql Injection
+      // bad fix, but will do for now, i guess.
       const res = await db.raw(`
          SELECT 
             *
@@ -27,6 +29,8 @@ const postQuery = {
 
    async getPostsBySearch(parent, { query }, { db, req }, info) {
       query = query.replace("'", '')
+      // temporary fix for sql Injection
+      // bad fix, but will do for now, i guess.
       const res = await db.raw(`
          SELECT
             *
