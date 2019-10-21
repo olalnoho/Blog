@@ -29,6 +29,7 @@ const getUser = gql`
 function App() {
    const { setIsAuth, setUser } = useContext(AuthContext)
    const { data, loading, refetch } = useQuery(getUser)
+
    useEffect(() => {
       if (data && data.me) {
          setIsAuth(true)

@@ -14,11 +14,10 @@ import getTagPosts from '../../queries/tagPosts'
 import getSearchPosts from '../../queries/searchPost'
 
 const BlogPost = React.memo(({ post, currentOffset, currentLimit }) => {
-   let tag;
-   let search;
    const location = useLocation()
    const [deletePost, { loading }] = useMutation(deletePostMutation)
    const { user: { role } } = useContext(AuthContext)
+
    const time = new Intl.DateTimeFormat('en-GB', {
       year: 'numeric',
       month: 'long',
@@ -26,12 +25,19 @@ const BlogPost = React.memo(({ post, currentOffset, currentLimit }) => {
       hour: 'numeric',
       minute: 'numeric'
    }).format(post.created_at)
-   const isTag = location.pathname.match(/\/tags\/(.+)/)
 
+
+   // If we are on the tag page i want to get the current tag
+   // so i can refetch it after deletion
+   let tag = null
+   const isTag = location.pathname.match(/\/tags\/(.+)/)
    if (isTag) {
       tag = isTag[1]
    }
 
+   // If we are on the search page i want to get the current search query
+   // so i can refetch it after deletion
+   let search = null
    if (location.pathname === '/search') {
       let test = location.search.match(/\?query=(.+)/)
       if (test) {
