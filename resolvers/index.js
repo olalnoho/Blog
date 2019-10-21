@@ -31,6 +31,7 @@ module.exports = {
          return db('comments')
             .select('*')
             .where({ post: parent.id })
+            .orderBy('created_at', 'desc')
       },
       async author(parent, args, { db }, info) {
          const user = await db('users')

@@ -3,10 +3,12 @@ import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
 
 import Comments from './Comments'
+import CreateComment from './CreateComment'
 
 const query = gql`
    query($id: ID!) {
      getPost(id: $id) {
+       id
        title,
        content,
        created_at
@@ -25,6 +27,9 @@ const query = gql`
 const FullPost = props => {
    const id = props.match.params.id
    const { data, error, loading } = useQuery(query, { variables: { id } })
+   if (data) {
+      console.log(data)
+   }
    if (loading) return <div className="container" />
    return (
       <div className="container">
@@ -45,16 +50,19 @@ const FullPost = props => {
             <div className="fullpost__content">
                {data && data.getPost.content}
             </div>
+            {data && <div className="fullpost__createcomment">
+               <CreateComment query={query} postId={data.getPost.id}/>
+            </div>}
             <div className="fullpost__comments">
                <h3 className="heading-3">
                   Comments
                </h3>
-            {
-               data && data.getPost.comments.length > 0 ?
-               data.getPost.comments.map(comment => {
-                  return <Comments key={comment.id} id={comment.id} comment={comment} />
-               }) : <span> No comments yet </span>
-            }
+               {
+                  data && data.getPost.comments.length > 0 ?
+                     data.getPost.comments.map(comment => {
+                        return <Comments key={comment.id} id={comment.id} comment={comment} />
+                     }) : <span> No comments yet </span>
+               }
             </div>
          </div>
       </div>

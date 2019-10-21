@@ -65,6 +65,7 @@
 }
 
 .error {
+  margin-top: 2rem;
   margin-bottom: 2rem;
   font-size: 3rem;
   color: red;
@@ -768,9 +769,21 @@
   font-size: 1.4rem;
 }
 
+.fullpost__createcomment .form {
+  margin: auto;
+  margin-top: 4rem;
+}
+
+.fullpost__createcomment .form input[type="submit"] {
+  width: auto;
+}
+
 @media only screen and (max-width: 500px) {
   .fullpost {
     width: 90%;
+  }
+  .fullpost__content {
+    width: 100%;
   }
 }
 

@@ -1,5 +1,10 @@
 const getUserId = require('../utils/getUserId')
 
+// The actual getting of comments for a post is done in resolvers/index.js
+// as a sub-resolver for the getPosts query
+// because there isn't any case where i'd just want to get the comments.
+// without posts.
+
 const commentQuery = {
    async getComment(parent, { id }, { db, req }, info) {
       const comments = await db('comments')

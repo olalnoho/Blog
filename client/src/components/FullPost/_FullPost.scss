@@ -49,11 +49,25 @@
       font-size: 1.4rem;
     }
   }
+
+  &__createcomment {
+    .form {
+      margin: auto;
+      margin-top: 4rem;
+      input[type="submit"] {
+        width: auto;
+      }
+    }
+  }
 }
 
 
 @media only screen and (max-width: 500px) {
   .fullpost {
     width: 90%;
+
+    &__content {
+      width: 100%;
+    }
   }
 }
