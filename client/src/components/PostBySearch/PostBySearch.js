@@ -21,7 +21,7 @@ const PostBySearch = props => {
    // The BlogPost component expects offset as a prop
    // So if a post is deleted, it can refetch the posts
    // on the page you were on.
-   // which is why were getting it here.
+   // which is why we're getting it here.
 
    const prevOffset = localStorage.getItem('offset')
 
