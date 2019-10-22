@@ -39,9 +39,9 @@ const BlogPost = React.memo(({ post, currentOffset, currentLimit }) => {
    // so i can refetch it after deletion
    let search = null
    if (location.pathname === '/search') {
-      let test = location.search.match(/\?query=(.+)/)
-      if (test) {
-         search = test[1]
+      let isSearch = location.search.match(/\?query=(.+)/)
+      if (isSearch) {
+         search = isSearch[1]
       }
    }
 
