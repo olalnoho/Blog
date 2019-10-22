@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
-import { AuthContext } from '../../context/AuthContext'
+import { GlobalContext } from '../../context/GlobalContext'
 import postQuery from '../../queries/postQuery'
 import numQuery from '../../queries/numPosts'
 import Spinner from '../UI/Spinner/Spinner'
@@ -19,7 +19,7 @@ const createPost = gql`
 `
 
 const Create = (props) => {
-   const { tagQuery } = useContext(AuthContext)
+   const { tagQuery } = useContext(GlobalContext)
    const [formData, setFormData] = useState({ title: '', content: '', tags: [] })
    const [tags, setTags] = useState('')
    const [submitPost, { data, loading }] = useMutation(createPost)

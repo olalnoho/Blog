@@ -5,7 +5,7 @@ import './css/main.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from '@apollo/react-hooks'
-import AuthProvider from './context/AuthContext'
+import GloablProvider from './context/GlobalContext'
 
 const Client = new ApolloClient({
    uri: '/graphql',
@@ -21,9 +21,9 @@ const Client = new ApolloClient({
 
 ReactDOM.render(
    <ApolloProvider client={Client}>
-      <AuthProvider>
+      <GloablProvider>
          <Router>
             <App />
          </Router>
-      </AuthProvider>
+      </GloablProvider>
    </ApolloProvider>, document.getElementById('root'));

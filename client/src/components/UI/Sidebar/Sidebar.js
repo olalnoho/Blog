@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { AuthContext } from '../../../context/AuthContext'
+import { GlobalContext } from '../../../context/GlobalContext'
 import Tags from './Tags'
 import Search from './Search'
 
 const Sidebar = ({ loading, ...props }) => {
-   const { isAuth, setIsAuth, setUser, user, tagQuery } = useContext(AuthContext)
+   const { isAuth, setIsAuth, setUser, user, tagQuery } = useContext(GlobalContext)
    const [isHidden, setIsHidden] = useState(true)
    const guestLinks = (
       <ul className="sidebar__nav">

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { gql } from 'apollo-boost'
 import { Redirect } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks'
-import { AuthContext } from '../../../context/AuthContext'
+import { GlobalContext } from '../../../context/GlobalContext'
 
 const loginMutation = gql`
    mutation($username: String! $password: String!) {
@@ -20,7 +20,7 @@ const loginMutation = gql`
    }
 `
 const Login = (props) => {
-   const authContext = useContext(AuthContext)
+   const authContext = useContext(GlobalContext)
    const [formData, setFormData] = useState({ username: '', password: '' })
    const [login, { data, error }] = useMutation(loginMutation)
    const onSubmit = e => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import getMostUsedTags from '../queries/popularTags'
 import { useQuery } from '@apollo/react-hooks'
-export const AuthContext = React.createContext({
+export const GlobalContext = React.createContext({
    isAuth: false,
    setIsAuth: () => { },
    user: {},
@@ -17,7 +17,7 @@ export default props => {
    const { data, refetch, loading, error } = useQuery(getMostUsedTags)
    const [authStatus, setAuthStatus] = useState(false)
    const [user, setUser] = useState({})
-   return <AuthContext.Provider value={{
+   return <GlobalContext.Provider value={{
       isAuth: authStatus,
       setIsAuth: setAuthStatus,
       user,
@@ -30,6 +30,6 @@ export default props => {
       }
    }}>
       {props.children}
-   </AuthContext.Provider>
+   </GlobalContext.Provider>
 }
 

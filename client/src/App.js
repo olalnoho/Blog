@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
 
-import { AuthContext } from './context/AuthContext'
+import { GlobalContext } from './context/GlobalContext'
 
 import Landing from './components/Landing/Landing'
 import Header from './components/UI/Header/Header'
@@ -27,7 +27,7 @@ const getUser = gql`
 `
 
 function App() {
-   const { setIsAuth, setUser } = useContext(AuthContext)
+   const { setIsAuth, setUser } = useContext(GlobalContext)
    const { data, loading, refetch } = useQuery(getUser)
 
    useEffect(() => {

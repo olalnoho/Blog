@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { AuthContext } from '../../../context/AuthContext'
+import { GlobalContext } from '../../../context/GlobalContext'
 import { Redirect } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
@@ -21,7 +21,7 @@ const createUserMutation = gql`
 `
 
 const Register = props => {
-   const { setIsAuth, setUser, isAuth } = useContext(AuthContext)
+   const { setIsAuth, setUser, isAuth } = useContext(GlobalContext)
    const [formData, setFormData] = useState({ username: '', password: '', confirmedPassword: '' })
    const [createUser, { data, error }] = useMutation(createUserMutation)
    const [customError, setCustomError] = useState('')

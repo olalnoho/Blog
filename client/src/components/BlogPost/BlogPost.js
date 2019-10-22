@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks'
 
 import Spinner from '../UI/Spinner/Spinner'
 
-import { AuthContext } from '../../context/AuthContext'
+import { GlobalContext } from '../../context/GlobalContext'
 
 import deletePostMutation from '../../queries/deletePost'
 import numPosts from '../../queries/numPosts'
@@ -16,7 +16,7 @@ import getSearchPosts from '../../queries/searchPost'
 const BlogPost = React.memo(({ post, currentOffset, currentLimit }) => {
    const location = useLocation()
    const [deletePost, { loading }] = useMutation(deletePostMutation)
-   const { user: { role } } = useContext(AuthContext)
+   const { user: { role } } = useContext(GlobalContext)
 
    const time = new Intl.DateTimeFormat('en-GB', {
       year: 'numeric',

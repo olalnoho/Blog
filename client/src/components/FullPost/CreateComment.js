@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
-import { AuthContext } from '../../context/AuthContext'
+import { GlobalContext } from '../../context/GlobalContext'
 import createCommentMutation from '../../queries/createComment'
 import Spinner from '../UI/Spinner/Spinner'
 
 const CreateComment = ({ postId, query }) => {
-   const { isAuth } = useContext(AuthContext)
+   const { isAuth } = useContext(GlobalContext)
    const [formData, setFormData] = useState({
       name: '',
       content: ''
