@@ -3,6 +3,9 @@ import { useQuery } from '@apollo/react-hooks'
 import SearchPostQuery from '../../queries/searchPost'
 import Spinner from '../UI/Spinner/Spinner'
 import BlogPost from '../BlogPost/BlogPost'
+import Modal from '../UI/Modal/Modal'
+import EditBlogPost from '../EditBlogPost/EditBlogPost'
+import useEditModal from '../../hooks/useEditModal'
 const queryRegex = /\?\w+=(.+)/
 const PostBySearch = props => {
    const queryExists = props.location.search.match(queryRegex)
@@ -10,6 +13,7 @@ const PostBySearch = props => {
    if (queryExists) {
       q = decodeURI(queryExists[1])
    }
+   const { selectedPost, setSelectedPost, showEditModal, setShowEditModal } = useEditModal()
    const { data, error, loading } = useQuery(SearchPostQuery, { variables: { query: q } })
 
    if (loading) {
@@ -25,19 +29,33 @@ const PostBySearch = props => {
    const prevOffset = localStorage.getItem('offset')
 
    return (
-      <div className="container column">
-         <div className="landing">
-            {error && error.graphQLErrors.length && <p className="error"> Something went wrong.. </p>}
-            <div className="landing__post">
-               {data && data.getPostsBySearch.length ? data.getPostsBySearch.map(p => {
-                  return <BlogPost currentOffset={prevOffset ? +prevOffset : 0} currentLimit={5} key={p.id} post={p} />
-               }) :
-                  <div className="error">
-                     No results found for {q}
-                  </div>}
+      <>
+         <Modal show={showEditModal}>
+            {selectedPost && <EditBlogPost where={'tags'} offset={+prevOffset} limit={5} post={selectedPost} closeModal={e => {
+               setShowEditModal(false)
+            }} />}
+         </Modal>
+         <div className="container column">
+            <div className="landing">
+               {error && error.graphQLErrors.length && <p className="error"> Something went wrong.. </p>}
+               <div className="landing__post">
+                  {data && data.getPostsBySearch.length ? data.getPostsBySearch.map(p => {
+                     return <BlogPost
+                        setSelectedPost={setSelectedPost}
+                        openModal={() => setShowEditModal(true)}
+                        currentOffset={prevOffset ? +prevOffset : 0}
+                        currentLimit={5}
+                        key={p.id}
+                        post={p}
+                     />
+                  }) :
+                     <div className="error">
+                        No results found for {q}
+                     </div>}
+               </div>
             </div>
          </div>
-      </div>
+      </>
    )
 }
 

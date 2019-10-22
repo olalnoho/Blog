@@ -12,9 +12,11 @@
 @import "../components/Auth/Register/Register";
 @import "../components/Create/Create";
 @import "../components/BlogPost/BlogPost";
+@import "../components/EditBlogPost/EditBlogPost";
 @import "../components/FullPost/FullPost";
 @import "../components/FullPost/Comments";
 @import "../components/UI/Spinner/Spinner";
+@import "../components/UI/Modal/Modal";
 
 * {
   box-sizing: border-box;

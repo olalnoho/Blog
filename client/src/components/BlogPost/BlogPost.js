@@ -13,7 +13,7 @@ import popularTags from '../../queries/popularTags'
 import getTagPosts from '../../queries/tagPosts'
 import getSearchPosts from '../../queries/searchPost'
 
-const BlogPost = React.memo(({ post, currentOffset, currentLimit }) => {
+const BlogPost = React.memo(({ post, currentOffset, currentLimit, setSelectedPost, openModal }) => {
    const location = useLocation()
    const [deletePost, { loading }] = useMutation(deletePostMutation)
    const { user: { role } } = useContext(GlobalContext)
@@ -82,7 +82,12 @@ const BlogPost = React.memo(({ post, currentOffset, currentLimit }) => {
             <Link to={`/post/${post.id}`} className="heading-3">{post.title} </Link>
             <div className="blogpost__heading--right">
                <strong>{time}</strong>
-               {role === 'admin' && <i className="fas fa-edit"></i>}
+               {role === 'admin' && <i className="fas fa-edit"
+                  onClick={e => {
+                     e.stopPropagation()
+                     openModal()
+                     setSelectedPost(post)
+                  }}></i>}
                {role === 'admin' && <i className="fa fa-trash-alt"
                   onClick={onDeletePost}></i>}
             </div>
