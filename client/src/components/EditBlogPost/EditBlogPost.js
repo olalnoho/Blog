@@ -2,19 +2,36 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import updatePostMutation from '../../queries/updatePost'
 import getPosts from '../../queries/postQuery'
+import popularTags from '../../queries/popularTags'
 import Spinner from '../UI/Spinner/Spinner'
 const EditBlogPost = ({ post, offset, limit, closeModal }) => {
    const [sendUpdate, { loading }] = useMutation(updatePostMutation)
+   const [tags, setTags] = useState('')
    const [formData, setFormData] = useState({
       title: post.title,
-      content: post.content
+      content: post.content,
+      tags: post.tags ? post.tags : []
    })
+
+   const tagInput = e => {
+      if (e.key === 'Enter') {
+         setFormData({ ...formData, tags: [...formData.tags, tags] })
+         setTags('')
+      }
+   }
+
+   const deleteTag = i => {
+      const tagsArray = formData.tags.slice()
+      tagsArray.splice(i, 1)
+      setFormData({ ...formData, tags: tagsArray })
+   }
 
    const onSubmit = e => {
       e.preventDefault()
       sendUpdate({
          variables: { id: post.id, data: formData }, refetchQueries: () => [
-            { query: getPosts, variables: { offset, limit } }
+            { query: getPosts, variables: { offset, limit }, },
+            { query: popularTags }
          ], awaitRefetchQueries: true
       }).then(_ => closeModal())
    }
@@ -29,9 +46,9 @@ const EditBlogPost = ({ post, offset, limit, closeModal }) => {
       <div className="editblogpost">
          <div className="editblogpost__heading">
             <h3 className="heading-3">Update your post</h3>
-         <i className="fas fa-times" onClick={closeModal}/>
+            <i className="fas fa-times" onClick={closeModal} />
          </div>
-         <form className="form" onSubmit={onSubmit}>
+         <div className="form">
             <label>
                Set a new title:
             </label>
@@ -41,8 +58,22 @@ const EditBlogPost = ({ post, offset, limit, closeModal }) => {
                value={formData.content}
                placeholder="Text goes here"
                onChange={e => setFormData({ ...formData, content: e.target.value })} />
-            <input type="submit" value="Submit" />
-         </form>
+            <div className="tag-holder">
+               <span className="labelfortags"> Your tags: </span>
+               {formData.tags.map((t, i) => <span
+                  key={i}
+                  className="tag"
+               > {t} <span onClick={e => deleteTag(i)} className="remove-tag"></span> </span>)}
+            </div>
+            <input
+               type="text"
+               value={tags}
+               placeholder="Tags. Press enter to add them."
+               onChange={e => setTags(e.target.value)}
+               onKeyUp={tagInput}
+            />
+            <input onClick={onSubmit} type="submit" value="Submit" />
+         </div>
       </div>
    )
 }

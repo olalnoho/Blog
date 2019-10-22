@@ -135,6 +135,54 @@
   background-color: #fff;
 }
 
+.tag-holder {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2rem;
+}
+
+.tag-holder .labelfortags {
+  font-size: 1.4rem;
+  margin-bottom: 0;
+  margin-right: 1rem;
+  color: #888;
+  font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tag {
+  margin: 0.2rem;
+  padding: 0.4rem;
+  font-size: 1.5rem;
+  background-color: #e24f48;
+  color: #ddd;
+}
+
+.tag:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.tag:hover {
+  background-color: #df3a32;
+}
+
+.remove-tag::after {
+  cursor: pointer;
+  content: "x";
+  display: inline-block;
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
 @media only screen and (min-width: 1000px) {
   .smallScreenHidden {
     opacity: 1 !important;
@@ -576,54 +624,6 @@
   height: 80%;
   margin-bottom: 2rem;
   min-height: 20rem;
-}
-
-.create .tag-holder {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 2rem;
-}
-
-.create .tag-holder .labelfortags {
-  font-size: 1.4rem;
-  margin-bottom: 0;
-  margin-right: 1rem;
-  color: #888;
-  font-weight: 600;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.create .tag {
-  margin: 0.2rem;
-  padding: 0.4rem;
-  font-size: 1.5rem;
-  background-color: #e24f48;
-  color: #ddd;
-}
-
-.create .tag:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.create .tag:hover {
-  background-color: #df3a32;
-}
-
-.create .remove-tag::after {
-  cursor: pointer;
-  content: "x";
-  display: inline-block;
-  font-size: 2rem;
-  margin-left: 1rem;
 }
 
 .blogpost {

@@ -21,7 +21,8 @@ module.exports = gql`
 
    input updatePostInput {
       title: String
-      content: String
+      content: String,
+      tags: [String!]
    }
 
    type AllPost {

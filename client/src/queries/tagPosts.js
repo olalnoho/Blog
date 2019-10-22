@@ -5,6 +5,7 @@ export default gql`
             id
             content
             title,
+            tags,
             created_at
       }
    }
