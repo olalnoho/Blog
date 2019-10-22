@@ -59,7 +59,7 @@ const EditBlogPost = ({ post, offset, limit, closeModal }) => {
                placeholder="Text goes here"
                onChange={e => setFormData({ ...formData, content: e.target.value })} />
             <div className="tag-holder">
-               <span className="labelfortags"> Your tags: </span>
+               <span className="labelfortags"> Your current tags: </span>
                {formData.tags.map((t, i) => <span
                   key={i}
                   className="tag"
@@ -68,7 +68,7 @@ const EditBlogPost = ({ post, offset, limit, closeModal }) => {
             <input
                type="text"
                value={tags}
-               placeholder="Tags. Press enter to add them."
+               placeholder="Add some more tags."
                onChange={e => setTags(e.target.value)}
                onKeyUp={tagInput}
             />

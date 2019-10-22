@@ -995,6 +995,8 @@
   border-radius: 1rem;
   padding: 1rem;
   border: 5px solid #747474;
+  -webkit-animation: slidein 0.2s ease-in-out;
+          animation: slidein 0.2s ease-in-out;
 }
 
 .modal ~ .container {
@@ -1040,6 +1042,7 @@ html {
 }
 
 .container {
+  position: relative;
   grid-column: 2/-2;
   grid-row: 2/-1;
   background-color: #DDD;
