@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import SearchPostQuery from '../../queries/searchPost'
 import Spinner from '../UI/Spinner/Spinner'
@@ -14,6 +14,12 @@ const PostBySearch = props => {
       q = decodeURI(queryExists[1])
    }
    const { selectedPost, setSelectedPost, showEditModal, setShowEditModal } = useEditModal()
+
+   const openModal = useCallback(
+      () => setShowEditModal(true),
+      [setShowEditModal]
+   )
+   
    const { data, error, loading } = useQuery(SearchPostQuery, { variables: { query: q } })
 
    if (loading) {
@@ -42,7 +48,7 @@ const PostBySearch = props => {
                   {data && data.getPostsBySearch.length ? data.getPostsBySearch.map(p => {
                      return <BlogPost
                         setSelectedPost={setSelectedPost}
-                        openModal={() => setShowEditModal(true)}
+                        openModal={openModal}
                         currentOffset={prevOffset ? +prevOffset : 0}
                         currentLimit={5}
                         key={p.id}

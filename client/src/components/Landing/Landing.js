@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import useEditModal from '../../hooks/useEditModal'
 import BlogPost from '../BlogPost/BlogPost'
@@ -50,6 +50,11 @@ const Landing = () => {
       //window.scrollTo(0,0)
    }
 
+   const openModal = useCallback(
+      () => setShowEditModal(true),
+      [setShowEditModal]
+   )
+
    if (loading) return <div className="container">
       <Spinner />
    </div>
@@ -67,7 +72,7 @@ const Landing = () => {
                {numError && numError.graphQLErrors.map(err => <p className="error" key={err.message}> {err.message} </p>)}
                <div className="landing__post">
                   {data && data.getPosts.map(post => <BlogPost
-                     openModal={() => setShowEditModal(true)}
+                     openModal={openModal}
                      currentOffset={offset}
                      currentLimit={limit}
                      key={post.id}

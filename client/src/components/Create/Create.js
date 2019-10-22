@@ -46,8 +46,6 @@ const Create = (props) => {
       setFormData({ ...formData, tags: tagsArray })
    }
 
-   console.log(data)
-
    if (props.loading) {
       return <div className="container" />
    } else if (!props.data || (props.data && props.data.me.role !== 'admin')) {
