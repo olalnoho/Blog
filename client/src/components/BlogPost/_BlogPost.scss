@@ -62,5 +62,8 @@
 @media only screen and (max-width: 500px) {
   .blogpost {
     width: 100%;
+    &__heading {
+      flex-direction: column;
+    }
   }
 }

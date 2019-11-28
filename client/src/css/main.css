@@ -705,6 +705,12 @@
   .blogpost {
     width: 100%;
   }
+  .blogpost__heading {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .editblogpost {
@@ -789,6 +795,24 @@
   height: 80%;
   margin-bottom: 2rem;
   min-height: 20rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .editblogpost__heading {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 1rem;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .editblogpost__heading h3 {
+    margin: 0;
+  }
+  .editblogpost .form input[type="submit"] {
+    margin-bottom: 2rem;
+  }
 }
 
 .fullpost {
@@ -1013,6 +1037,7 @@
 
 @media screen and (max-width: 500px) {
   .modal {
+    overflow: auto;
     height: 60%;
     width: 90%;
   }

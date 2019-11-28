@@ -15,7 +15,8 @@ const Landing = () => {
    const [totalPosts, setTotalPosts] = useState(1)
    const { data, error, refetch, loading } = useQuery(getPostsQuery, { fetchPolicy: 'cache-first', variables: { limit, offset } })
 
-   const { showEditModal,
+   const {
+      showEditModal,
       setShowEditModal,
       selectedPost,
       setSelectedPost

@@ -50,3 +50,22 @@
     min-height: 20rem;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .editblogpost {
+    &__heading {
+      align-items: center;
+      margin-bottom: 1rem;
+      justify-content: space-between;
+      h3 {
+        margin: 0;
+      }
+    }
+
+    .form {
+      input[type="submit"] {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}

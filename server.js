@@ -1,17 +1,20 @@
 const { ApolloServer, gql } = require('apollo-server-express')
 const express = require('express')
+
+const db = require('./db/db')
+
 const typeDefs = require('./typeDefs')
 const resolvers = require('./resolvers')
+
 const app = express()
-const db = require('./db/db')
 
 app.disable('x-powered-by')
 
 const server = new ApolloServer({
-   playground: true,
+   playground: false,
    typeDefs,
    resolvers,
-   context: (req) => ({
+   context: req => ({
       ...req,
       db,
    })
