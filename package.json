@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f ./env/dev.env nodemon server.js",
+    "start": "env-cmd -f ./env/prod.env nodemon server.js",
     "dev": "env-cmd -f ./env/dev.env concurrently \"npm start\" \"npm start --prefix client\"",
-    "prod": "env-cmd -f ./env/prod.env concurrently \"node server.js\" \"npm start --prefix client\""
+    "prod": "env-cmd -f ./env/prod.env concurrently \"node server.js\" \"npm start --prefix client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
