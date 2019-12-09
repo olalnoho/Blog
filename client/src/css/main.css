@@ -25,6 +25,7 @@
 }
 
 .form label {
+  font-weight: bold;
   -ms-flex-item-align: start;
       align-self: flex-start;
   font-size: 1.5rem;
@@ -32,7 +33,6 @@
 }
 
 .form input {
-  font-weight: 700;
   border: none;
   outline: none;
   width: 100%;
@@ -41,7 +41,7 @@
 
 .form input[type="text"],
 .form input[type="password"] {
-  font-size: 2rem;
+  font-size: 1.6rem;
   padding: 0.3rem;
   margin-bottom: 4rem;
   background-color: transparent;

@@ -4,8 +4,9 @@ const knex = require('knex')({
    connection: {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      host: 'localhost',
-      user: 'duh'
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      ssl: process.env.production == 'true'
    }
 });
 

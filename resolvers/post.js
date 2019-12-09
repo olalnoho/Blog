@@ -83,7 +83,6 @@ const postMutation = {
          if (err.code === '45000') {
             throw new Error('Only admins can create posts')
          } else {
-            console.log(err)
             throw new Error('Something unexpected went wrong')
          }
       }

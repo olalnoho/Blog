@@ -69,8 +69,11 @@ const Landing = () => {
          </Modal>
          <div className="container column" onClick={e => setShowEditModal(false)}>
             <div className="landing">
-               {error && error.graphQLErrors.map(err => <p className="error" key={err.message}> {err.message} </p>)}
-               {numError && numError.graphQLErrors.map(err => <p className="error" key={err.message}> {err.message} </p>)}
+               {
+                  ((error && error.graphQLErrors.length > 0) ||
+                  (numError && numError.graphQLErrors.length > 0)) &&
+                  <p className="error">Something went wrong...</p>
+               }
                <div className="landing__post">
                   {data && data.getPosts.map(post => <BlogPost
                      openModal={openModal}
